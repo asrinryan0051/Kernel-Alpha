@@ -3,6 +3,7 @@ import re
 from collections import defaultdict
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import AgglomerativeClustering
+from database_conn import get_db_connection
 
 
 def normalize(text):
@@ -14,7 +15,7 @@ def normalize(text):
 
 def run_projectx(subject_code):
     try:
-        conn = sqlite3.connect("projectx.db")
+        conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("""
             SELECT q.topic_id, q.part, q.question_text, q.paper_id, e.exam_year
