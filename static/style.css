@@ -450,3 +450,187 @@ body {
         opacity: 1;
     }
 }
+
+/* =========================================================
+   📱 MOBILE UI OPTIMIZATION (≤ 768px)
+   Append this at the END of your CSS file
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Global spacing */
+    .container {
+        padding: 0 16px;
+    }
+
+    /* HERO SECTION */
+    .hero-header {
+        padding: 60px 0 40px;
+    }
+
+    .brand-logo {
+        font-size: 3rem;
+        letter-spacing: -2px;
+        line-height: 1.1;
+    }
+
+    .institution {
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+    }
+
+    /* SEARCH AREA STACKED */
+    .search-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .search-box input,
+    .subject-dropdown {
+        width: 100%;
+        padding: 16px;
+        font-size: 0.95rem;
+    }
+
+    .search-box button,
+    .analyze-btn {
+        width: 100%;
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    /* MAIN LAYOUT → SINGLE COLUMN */
+    .main-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    /* SIDEBAR → HORIZONTAL SCROLL TABS */
+    .sidebar {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .sidebar::-webkit-scrollbar {
+        display: none; /* Chrome */
+    }
+
+    .nav-tab {
+        flex: 0 0 auto;
+        padding: 14px 18px;
+        font-size: 0.8rem;
+        border-radius: 12px;
+        white-space: nowrap;
+        margin-bottom: 0;
+        background: rgba(255,255,255,0.03);
+    }
+
+    .nav-tab span {
+        font-size: 0.6rem;
+    }
+
+    /* REPORT CARDS */
+    .report-card {
+        padding: 22px;
+        border-radius: 20px;
+    }
+
+    .report-card:hover {
+        transform: none; /* Disable heavy hover animation on mobile */
+        box-shadow: 0 0 20px rgba(59,130,246,0.15);
+    }
+
+    .q-body {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .prob-pct {
+        font-size: 1.2rem;
+    }
+
+    /* EMPTY STATE */
+    .empty-box {
+        padding: 35px 20px;
+    }
+
+    /* COMING SOON SECTION */
+    .coming-soon-box {
+        padding: 40px 25px;
+        border-radius: 22px;
+    }
+
+    .coming-soon-title {
+        font-size: 1.8rem;
+    }
+
+    .coming-soon-text {
+        font-size: 0.9rem;
+    }
+
+    /* INFO SIDEBAR → FULL SCREEN DRAWER */
+    .info-sidebar {
+        width: 100%;
+        right: -100%;
+        padding: 30px 20px;
+        border-left: none;
+    }
+
+    .info-sidebar.active {
+        right: 0;
+    }
+
+    .info-toggle-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1rem;
+    }
+
+    /* Reduce heavy glow effects for performance */
+    .blue-accent {
+        animation: none;
+        filter: drop-shadow(0 0 10px var(--accent-glow));
+    }
+
+    .fill {
+        transition: width 0.6s ease;
+    }
+}
+
+
+/* =========================================================
+   📱 SMALL MOBILE (≤ 480px)
+   Extra refinement for small phones
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .brand-logo {
+        font-size: 2.4rem;
+    }
+
+    .hero-header {
+        padding: 50px 0 30px;
+    }
+
+    .search-box input,
+    .subject-dropdown {
+        padding: 14px;
+    }
+
+    .report-card {
+        padding: 18px;
+    }
+
+    .coming-soon-title {
+        font-size: 1.5rem;
+    }
+
+}
