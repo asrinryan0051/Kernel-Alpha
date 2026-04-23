@@ -1,0 +1,452 @@
+:root {
+    --bg: #020617; 
+    --surface: #0f172a; 
+    --accent: #3b82f6; 
+    --accent-glow: rgba(59, 130, 246, 0.5);
+    --text: #f8fafc; 
+    --muted: #94a3b8;
+    --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #00f2ff 100%);
+}
+
+/* 1. ANIMATED GRADIENT BACKGROUND */
+body { 
+    background: radial-gradient(circle at top center, #1e293b 0%, #020617 80%);
+    color: var(--text); 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    margin: 0; 
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* 2. GLOWING LOGO SECTION */
+.hero-header { text-align: center; padding: 100px 0; }
+
+.brand-logo { 
+    font-size: 5.5rem; 
+    font-weight: 800; 
+    letter-spacing: -4px; 
+    margin: 0; 
+    color: var(--text);
+}
+
+.blue-accent { 
+    display: inline-block; /* Essential for the glow filter to render */
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px var(--accent-glow));
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { filter: drop-shadow(0 0 12px var(--accent-glow)); }
+    50% { filter: drop-shadow(0 0 25px rgba(0, 242, 255, 0.6)); }
+}
+
+.institution { 
+    color: var(--muted); 
+    letter-spacing: 4px; 
+    font-size: 0.8rem; 
+    margin-top: 10px; 
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* 3. GLOWING SEARCH BOX */
+.search-box { margin-top: 40px; display: flex; justify-content: center; gap: 15px; }
+
+.search-box input { 
+    width: 350px; 
+    background: rgba(15, 23, 42, 0.8); 
+    border: 1px solid rgba(59, 130, 246, 0.3); 
+    padding: 18px; 
+    border-radius: 12px; 
+    color: white; 
+    outline: none; 
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.search-box button { 
+    background: var(--gradient-blue); 
+    color: white; 
+    border: none; 
+    padding: 0 35px; 
+    border-radius: 12px; 
+    font-weight: 800; 
+    cursor: pointer; 
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.search-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+}
+
+/* 4. LAYOUT & TAB FILTERING (THE FIX) */
+.main-layout { display: grid; grid-template-columns: 280px 1fr; gap: 50px; padding-bottom: 80px; }
+
+.sidebar-label { font-size: 0.75rem; font-weight: 800; color: var(--muted); margin-bottom: 20px; letter-spacing: 2px; }
+
+.nav-tab { 
+    width: 100%; 
+    text-align: left; 
+    background: transparent; 
+    border: none; 
+    padding: 20px; 
+    border-radius: 15px; 
+    color: var(--muted); 
+    cursor: pointer; 
+    margin-bottom: 10px; 
+    transition: 0.3s;
+}
+
+.nav-tab span { display: block; font-size: 0.7rem; opacity: 0.6; }
+
+/* Ensuring the active tab glows */
+.nav-tab.active { 
+    background: rgba(59, 130, 246, 0.1); 
+    color: var(--accent); 
+    border: 1px solid rgba(59, 130, 246, 0.2); 
+    box-shadow: inset 0 0 15px rgba(59, 130, 246, 0.1);
+}
+
+/* THE PART FILTER LOGIC */
+.part-pane { 
+    display: none; /* Hide all sections by default */
+}
+
+.part-pane.active { 
+    display: block; /* Show only the active section */
+    animation: slideIn 0.4s ease forwards; 
+}
+
+/* 5. GLOWING REPORT CARDS */
+.report-card { 
+    background: rgba(15, 23, 42, 0.6); 
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    padding: 30px; 
+    border-radius: 24px; 
+    margin-bottom: 25px; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(12px);
+}
+
+.report-card:hover { 
+    transform: translateY(-8px) scale(1.01); 
+    border-color: var(--accent); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+.card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.meta-txt { font-size: 0.7rem; font-weight: 800; color: var(--muted); }
+
+.prob-pct { 
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800; 
+    font-size: 1.5rem; 
+}
+
+/* 6. GLOWING METERS */
+.meter { 
+    background: rgba(255, 255, 255, 0.05); 
+    height: 8px; 
+    border-radius: 10px; 
+    margin: 15px 0; 
+    overflow: hidden; 
+}
+
+.fill { 
+    background: var(--gradient-blue); 
+    height: 100%; 
+    box-shadow: 0 0 10px var(--accent);
+    transition: width 1s ease; 
+}
+
+.q-body { font-size: 1.15rem; line-height: 1.6; font-weight: 500; color: #e2e8f0; margin: 0; }
+
+/* 7. EMPTY STATE (Logic for Score < 1.0) */
+.empty-box {
+    text-align: center;
+    padding: 50px;
+    background: rgba(15, 23, 42, 0.3);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+
+.empty { color: var(--muted); font-size: 1rem; font-style: italic; }
+
+/* ANIMATIONS */
+@keyframes slideIn { 
+    from { opacity: 0; transform: translateX(-20px); } 
+    to { opacity: 1; transform: translateX(0); } 
+}
+
+.fade-in { animation: fadeIn 1.2s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* NEW BLOCK */
+/* --- REGULAR CSS DROPDOWN FIX --- */
+
+.search-box {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.subject-dropdown {
+    width: 380px;
+    background-color: var(--surface);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 18px;
+    border-radius: 15px;
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    appearance: none; /* Removes default browser arrow */
+    
+    /* Custom Blue Arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233b82f6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+    background-size: 1.2rem;
+    
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.subject-dropdown:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* Styling the list inside the dropdown */
+.subject-dropdown option {
+    background-color: #0f172a; /* Solid surface color */
+    color: var(--text);
+    padding: 15px;
+}
+
+.analyze-btn {
+    background: var(--gradient-blue);
+    color: white;
+    border: none;
+    padding: 0 35px;
+    border-radius: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.analyze-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
+}
+/* --- COMING SOON SECTION --- */
+
+.coming-soon-container {
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.coming-soon-box {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 60px;
+    border-radius: 30px;
+    text-align: center;
+    backdrop-filter: blur(15px);
+    max-width: 500px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.status-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    padding: 5px 15px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    display: inline-block;
+    border-radius: 50px;
+}
+
+.coming-soon-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: var(--text);
+    text-transform: none; /* Respecting your no-caps preference */
+}
+
+.coming-soon-text {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.white-txt { color: #ffffff; font-weight: 700; }
+
+/* Mini Progress Bar for Aesthetic */
+.loading-bar-mini {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+.loading-progress {
+    width: 60%;
+    height: 100%;
+    background: var(--gradient-blue);
+    animation: pulseWidth 2s infinite ease-in-out;
+}
+
+@keyframes pulseWidth {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+}
+
+.retry-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--accent);
+}
+
+/* --- TOGGLE SIDEBAR SYSTEM --- */
+.info-sidebar {
+    box-sizing: border-box; /* Force padding inside the width */
+    right: -100%;
+    position: fixed;
+    top: 0;
+    right: -400px; /* Hidden off-screen by default */
+    width: 380px;
+    height: 100vh;
+    background: rgba(2, 6, 23, 0.95); /* Deep midnight background */
+    border-left: 1px solid rgba(59, 130, 246, 0.3);
+    backdrop-filter: blur(20px);
+    z-index: 2000;
+    padding: 40px;
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    display: block; /* Ensure it's not hidden by display:none */
+}
+
+/* When the 'active' class is added via JS, it slides in */
+.info-sidebar.active {
+    right: 0;
+}
+
+.info-toggle-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient-blue);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+    z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px var(--accent-glow);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.info-toggle-btn:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.close-sidebar-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--muted);
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+.close-sidebar-btn:hover {
+    color: white;
+    border-color: var(--accent);
+}
+
+.info-sidebar .info-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.info-sidebar .info-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 25px;
+}
+
+.info-sidebar .contact-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+
+/* --- ENHANCED BADGE GLOW --- */
+.status-glow {
+    border-color: var(--accent) !important;
+    color: #fff !important;
+    background: rgba(59, 130, 246, 0.1) !important;
+    box-shadow: 0 0 15px var(--accent-glow);
+    text-shadow: 0 0 10px var(--accent-glow);
+    animation: statusPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes statusPulse {
+    0%, 100% {
+        box-shadow: 0 0 8px var(--accent-glow);
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+        transform: scale(1.03);
+        opacity: 1;
+    }
+}
