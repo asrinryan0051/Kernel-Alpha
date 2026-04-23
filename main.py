@@ -27,7 +27,12 @@ async def predict(request: Request, subject_code: str = Form(...)):
     raw_output = run_projectx(subject_code.upper())
     
     if not raw_output:
-        return templates.TemplateResponse("index.html", {"request": request, "results": None, "subject": subject_code.upper()})
+        # FIX 1: Use explicit request, name, and context arguments
+        return templates.TemplateResponse(
+            request=request,
+            name="index.html",
+            context={"results": None, "subject": subject_code.upper()}
+        )
 
     # 2. RESTORE THRESHOLD: Filter out anything below 1.0
     filtered_output = {}
@@ -35,8 +40,12 @@ async def predict(request: Request, subject_code: str = Form(...)):
         # Only keep questions where score >= 1.0
         filtered_output[part] = [item for item in raw_output.get(part, []) if item['score'] >= 1.0]
             
-    return templates.TemplateResponse("index.html", {
-        "request": request, 
-        "results": filtered_output, 
-        "subject": subject_code.upper()
-    })
+    # FIX 2: Use explicit request, name, and context arguments here too
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={
+            "results": filtered_output, 
+            "subject": subject_code.upper()
+        }
+    )
