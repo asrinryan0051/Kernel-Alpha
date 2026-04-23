@@ -12,8 +12,12 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "results": None})
-
+    # NEW WAY (Standard for 2026 / Starlette 0.28+)
+    return templates.TemplateResponse(
+      request=request, 
+      name="index.html", 
+      context={"results": None}
+)
 @app.post("/predict", response_class=HTMLResponse)
 async def predict(request: Request, subject_code: str = Form(...)):
     # 1. Run the original algorithm
