@@ -649,7 +649,7 @@ body {
         text-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
         transform: scale(1.05);
     }
-}
+
     /* REPORT CARDS */
     .report-card {
         padding: 20px;
@@ -720,7 +720,7 @@ body {
         gap: 20px;
     }
 
-
+}
 
 /* SMALL PHONES (480px and below) */
 @media screen and (max-width: 480px) {
@@ -831,7 +831,7 @@ body {
         transform: scale(1.05);
         font-weight: 700;
     }
-}
+
     /* ✅ FIX: Space between question cards */
     .report-card {
         padding: 16px;
@@ -859,7 +859,7 @@ body {
     }
 
     .meter {
-        height: 6px;
+        height: 7px;
         margin: 10px 0;
     }
 
@@ -931,8 +931,7 @@ body {
         height: 42px;
         font-size: 0.95rem;
     }
-
-
+}
 
 /* EXTRA SMALL PHONES (360px and below) */
 @media screen and (max-width: 360px) {
@@ -1116,7 +1115,7 @@ body {
 }
 
 @media screen and (max-width: 480px) {
-    /* ... existing code ... */
+   
 
     .report-card {
         padding: 24px;         /* Increased from 16px to give more "content room" */
@@ -1132,6 +1131,19 @@ body {
     .prob-pct {
         font-size: 1.15rem;    /* Made probability percentage slightly larger */
     }
-    
+
+    .card-meta {
+        margin-bottom: 15px; 
+        align-items: baseline; /* Aligns label and % nicely */
+    }
+
+    /* "PROBABILITY" label */
+    .meta-txt {
+        font-size: 0.65rem; /* Increased from 0.6rem */
+        font-weight: 800;
+        letter-spacing: 0.8px;
+    }
 
 }
+
+
