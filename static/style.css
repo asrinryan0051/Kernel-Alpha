@@ -1115,3 +1115,23 @@ body {
     }
 }
 
+@media screen and (max-width: 480px) {
+    /* ... existing code ... */
+
+    .report-card {
+        padding: 24px;         /* Increased from 16px to give more "content room" */
+        border-radius: 20px;   /* Increased from 14px for a softer, larger look */
+        margin-bottom: 18px;   /* Increased slightly to keep it airy */
+    }
+
+    .q-body {
+        font-size: 1.0rem;    /* Increased slightly for better readability */
+        line-height: 1.6;      /* Slightly more line height for a premium feel */
+    }
+    
+    .prob-pct {
+        font-size: 1.15rem;    /* Made probability percentage slightly larger */
+    }
+    
+
+}
