@@ -36,10 +36,13 @@ async def predict(request: Request, subject_code: str = Form(...)):
 
     # 2. RESTORE THRESHOLD: Filter out anything below 1.0
     filtered_output = {}
-    for part in ["A", "B", "C"]:
-        # Only keep questions where score >= 1.0
-        filtered_output[part] = [item for item in raw_output.get(part, []) if item['score'] >= 1.0]
-            
+    for unit, parts in raw_output.items():
+       filtered_output[unit] = {}
+       for part in ["A", "B", "C"]:
+          filtered_output[unit][part] = [
+            item for item in parts.get(part, [])
+            if item["score"] >= 1.0
+           ]   
     # FIX 2: Use explicit request, name, and context arguments here too
     return templates.TemplateResponse(
         request=request,
